@@ -5,8 +5,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>The Band</title>
         <link rel="icon" href="./assets/img/icon.jpg" type="image/x-icon" />
-        <link rel="stylesheet" href="assets/fonts/themify-icons/themify-icons.css">
         <link rel="stylesheet" href="assets/css/main.css">
+        <!-- Responsive để dưới main -->
+        <link rel="stylesheet" href="assets/css/responsive.css">
+        <link rel="stylesheet" href="assets/fonts/themify-icons/themify-icons.css">
     </head>
     <body>
         <div id="main">
@@ -34,6 +36,10 @@
                 <!-- Begin Search Button -->
                 <div class="search-btn">
                     <i class="search-icon ti-search"></i>
+                </div>
+
+                <div id="mobile-menu" class="mobile-menu-btn">
+                    <i class="menu-icon ti-menu"></i>
                 </div>
                 <!-- End Search Button -->
             </div>
@@ -173,5 +179,31 @@
                 </div>
             </div>          
         </div>
+
+        <script>
+            var header = document.getElementById('header');
+            var mobileMenu = document.getElementById('mobile-menu');
+            var headerHeight = header.clientHeight;
+
+            // Open/Close Mobile Menu
+            mobileMenu.onclick = function() {
+                var isClose = header.clientHeight === headerHeight;
+                if (isClose) {
+                    header.style.height = 'auto';
+                } else {
+                    header.style.height = null;
+                }
+            }  
+            
+            // Auto close when click menu
+            var menuItems = document.querySelectorAll('#nav li a[href*="#"]');
+            for (var i = 0; i < menuItems.length; i++) {
+                var menuItem = menuItems[i];
+
+                menuItem.onclick = function() {
+                    header.style.height = null;
+                }
+            }
+        </script>
     </body>
 </html>
